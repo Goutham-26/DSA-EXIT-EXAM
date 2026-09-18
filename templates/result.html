@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Prediction result | Typewise{% endblock %}
+{% block content %}
+<section class="result-layout page-shell">
+    <div class="result-heading">
+        <p class="eyebrow">Prediction complete</p>
+        <h1>Your Pokémon is most likely</h1>
+    </div>
+    <div class="result-card">
+        <span class="result-label">Primary type</span>
+        <strong>{{ predicted_type }}</strong>
+        <span class="result-line"></span>
+        <p>Based on the stat profile you entered.</p>
+    </div>
+    <div class="submitted-stats">
+        <p class="eyebrow">Submitted profile</p>
+        <div class="stat-list">
+            <span><b>HP</b>{{ values.hp|round(1) }}</span>
+            <span><b>Attack</b>{{ values.attack|round(1) }}</span>
+            <span><b>Defense</b>{{ values.defense|round(1) }}</span>
+            <span><b>Height</b>{{ values.height_dm|round(1) }} dm</span>
+            <span><b>Base experience</b>{{ values.base_experience|round(1) }}</span>
+        </div>
+    </div>
+    <a class="button button-secondary" href="{{ url_for('predict') }}">Try another profile <span aria-hidden="true">&#8634;</span></a>
+</section>
+{% endblock %}

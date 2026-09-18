@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Typewise | Pokémon type predictor{% endblock %}
+{% block content %}
+<section class="hero page-shell">
+    <div class="hero-copy">
+        <p class="eyebrow">A small model with a big type chart</p>
+        <h1>Find the type hiding inside the stats.</h1>
+        <p class="hero-text">Enter five familiar Pokémon statistics and Typewise estimates the most likely primary type from the patterns in your dataset.</p>
+        <a class="button button-primary" href="{{ url_for('predict') }}">Start a prediction <span aria-hidden="true">&#8594;</span></a>
+    </div>
+    <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="type-token token-fire">FIRE</div>
+        <div class="type-token token-water">WATER</div>
+        <div class="type-token token-grass">GRASS</div>
+        <div class="stat-card"><span>MODEL READY</span><strong>18 types</strong><small>primary type classes</small></div>
+    </div>
+</section>
+
+<section class="feature-strip page-shell">
+    <article>
+        <span class="feature-number">01</span>
+        <h2>Five inputs</h2>
+        <p>HP, attack, defense, height, and base experience.</p>
+    </article>
+    <article>
+        <span class="feature-number">02</span>
+        <h2>One clear result</h2>
+        <p>A single primary type with the submitted stats beside it.</p>
+    </article>
+    <article>
+        <span class="feature-number">03</span>
+        <h2>Dataset first</h2>
+        <p>Predictions are learned from the Pokémon records in G2.csv.</p>
+    </article>
+</section>
+
+<section class="model-note page-shell">
+    <span class="note-dot"></span>
+    <p>The uploaded bundle supplies the saved type label encoder. Its saved regression models predict continuous values, so this app trains a classification model from the dataset for the type prediction task.</p>
+</section>
+{% endblock %}

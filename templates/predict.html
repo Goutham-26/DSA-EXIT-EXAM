@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Predict a type | Typewise{% endblock %}
+{% block content %}
+<section class="form-layout page-shell">
+    <div class="form-intro">
+        <p class="eyebrow">Prediction console</p>
+        <h1>Describe your Pokémon.</h1>
+        <p>Use the same units as the dataset. The classifier will compare the stat profile with known primary types.</p>
+        <div class="side-rule"></div>
+        <p class="quiet-copy">Values are numeric. Height is measured in decimeters and base experience in experience points.</p>
+    </div>
+
+    <form class="prediction-form" method="post" action="{{ url_for('predict') }}">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="form-alert">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="field-grid">
+            {% for field, label, hint, minimum, maximum in fields %}
+            <label class="field {% if field == 'base_experience' %}field-wide{% endif %}">
+                <span class="field-label">{{ label }}</span>
+                <span class="field-hint">{{ hint }}</span>
+                <input type="number" name="{{ field }}" value="{{ values.get(field, '') }}" min="{{ minimum }}" max="{{ maximum }}" step="any" required>
+            </label>
+            {% endfor %}
+        </div>
+        <button class="button button-primary submit-button" type="submit">Predict primary type <span aria-hidden="true">&#8594;</span></button>
+    </form>
+</section>
+{% endblock %}
